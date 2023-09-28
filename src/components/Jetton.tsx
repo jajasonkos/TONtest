@@ -16,7 +16,7 @@ export function Jetton() {
   return (
     <Card title="Jetton">
       <FlexBoxCol>
-        <h3>Faucet Jetton</h3>
+        <h3>Faucet Jetton Coin</h3>
         <FlexBoxRow>
           Wallet
           <Ellipsis>{jettonWalletAddress}</Ellipsis>
@@ -31,7 +31,7 @@ export function Jetton() {
             mint();
           }}
         >
-          Get jettons from faucet
+          Get jettons coin from faucet
         </Button>
       </FlexBoxCol>
     </Card>

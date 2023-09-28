@@ -10,6 +10,14 @@ export const Card = styled.div`
   }
 `;
 
+export const NavBar = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-around;
+  margin: 5px;
+`;
 export const FlexBoxRow = styled.div`
   display: flex;
   flex-direction: row;

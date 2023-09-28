@@ -9,10 +9,18 @@ import {
   Ellipsis,
   Button,
 } from "./styled/styled";
+import { useEffect, useState } from "react";
 
 export function Counter() {
   const { connected } = useTonConnect();
   const { value, address, sendIncrement } = useCounterContract();
+  const [num, setNumm] = useState<number>()
+  useEffect(() => {
+    if (value) {
+      setNumm(parseInt(value) - 1674271323455)
+    }
+
+  }, [value]);
 
   return (
     <div className="Container">
@@ -27,7 +35,7 @@ export function Counter() {
           </FlexBoxRow>
           <FlexBoxRow>
             <b>Value</b>
-            <div>{value ?? "Loading..."}</div>
+            <div>{num ?? "Loading..."}</div>
           </FlexBoxRow>
           <Button
             disabled={!connected}
