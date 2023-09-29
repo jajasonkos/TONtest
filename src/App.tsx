@@ -11,9 +11,11 @@ import "@twa-dev/sdk";
 import { useState } from "react";
 
 const StyledApp = styled.div`
-  // background-color: #e8e8e8;
   color: black;
-  background-image: url("public/bg.jpg");
+  background-image: url("https://media.licdn.com/dms/image/C561BAQFsZfrVqhunZA/company-background_10000/0/1635758201199?e=1696579200&v=beta&t=sJIGE-Nt3Zq9vSkiLlTrWt6DlosK77k0ANKRlS6L-6c");
+
+  background-attachment: fixed;
+  background-position: center;
   @media (prefers-color-scheme: dark) {
     background-color: #222;
     color: white;
@@ -28,7 +30,7 @@ top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
   max-width: 1200px;
-  width: 90vh;
+  width: 90vw;
   background-color: #89CFF0;
   border-radius: 3px;
 `;
