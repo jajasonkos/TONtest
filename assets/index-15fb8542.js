@@ -638,9 +638,11 @@ Values:
     border: 1px solid #fefefe;
   }
 `;function Counter(){const{connected:et}=useTonConnect(),{value:tt,address:rt,sendIncrement:nt}=useCounterContract(),[ot,it]=reactExports.useState();return reactExports.useEffect(()=>{tt&&it(parseInt(tt)-1674271323455)},[tt]),jsxs("div",{className:"Container",children:[jsx$1(TonConnectButton$1,{}),jsx$1(Card,{children:jsxs(FlexBoxCol,{children:[jsx$1("h3",{children:"Counter"}),jsxs(FlexBoxRow,{children:[jsx$1("b",{children:"Address"}),jsx$1(Ellipsis,{children:rt})]}),jsxs(FlexBoxRow,{children:[jsx$1("b",{children:"Value"}),jsx$1("div",{children:ot??"Loading..."})]}),jsx$1(Button,{disabled:!et,className:`Button ${et?"Active":"Disabled"}`,onClick:()=>{nt()},children:"Increment"})]})})]})}class FaucetJetton{constructor(tt,rt){this.address=tt,this.init=rt}async sendMintFromFaucet(tt,rt,nt){const ft=dist$2.beginCell().storeUint(21,32).storeUint(0,64).storeAddress(nt).storeCoins(dist$2.toNano("0.02")).storeRef(dist$2.beginCell().storeUint(395134233,32).storeUint(0,64).storeCoins(dist$2.toNano(150)).storeAddress(null).storeAddress(nt).storeCoins(dist$2.toNano("0.001")).storeBit(!1).endCell()).endCell();await tt.internal(rt,{value:dist$2.toNano("0.05"),body:ft})}async getWalletAddress(tt,rt){const{stack:nt}=await tt.get("get_wallet_address",[{type:"slice",cell:dist$2.beginCell().storeAddress(rt).endCell()}]);return nt.readAddress().toString()}}class FaucetJettonWallet{constructor(tt,rt){this.address=tt,this.init=rt}async getBalance(tt){const{stack:rt}=await tt.get("get_wallet_data",[]);return dist.fromNano(rt.readBigNumber())}}function useFaucetJettonContract(){const{wallet:et,sender:tt}=useTonConnect(),{client:rt}=useTonClient(),nt=useAsyncInitialize(async()=>{if(!rt||!et)return;const ht=new FaucetJetton(dist$2.Address.parse("EQB8StgTQXidy32a8xfu7j4HMoWYV0b0cFM8nXsP2cza_b7Y"));return rt.open(ht)},[rt,et]),ot=useAsyncInitialize(async()=>{if(!nt||!rt)return;const ht=await nt.getWalletAddress(dist$2.Address.parse(et));return rt.open(new FaucetJettonWallet(dist$2.Address.parse(ht)))},[nt,rt]),{data:it,isFetching:ft}=useQuery(["jetton"],async()=>ot?(await ot.getBalance()).toString():null,{refetchInterval:3e3});return{mint:()=>{nt==null||nt.sendMintFromFaucet(tt,dist$2.Address.parse(et))},jettonWalletAddress:ot==null?void 0:ot.address.toString(),balance:ft?null:it}}function Jetton(){const{connected:et}=useTonConnect(),{mint:tt,jettonWalletAddress:rt,balance:nt}=useFaucetJettonContract();return jsx$1(Card,{title:"Jetton",children:jsxs(FlexBoxCol,{children:[jsx$1("h3",{children:"Faucet Jetton Coin"}),jsxs(FlexBoxRow,{children:["Wallet",jsx$1(Ellipsis,{children:rt})]}),jsxs(FlexBoxRow,{children:["Balance",jsx$1("div",{children:nt??"Loading..."})]}),jsx$1(Button,{disabled:!et,onClick:async()=>{tt()},children:"Get jettons coin from faucet"})]})})}function TransferTon(){const{sender:et,connected:tt}=useTonConnect(),[rt,nt]=reactExports.useState("0.01"),[ot,it]=reactExports.useState("EQCqzOxx_v3tj5XcRr156hz4l6XR58R_mPwspVvaHF16WWw2");return jsx$1(Card,{children:jsxs(FlexBoxCol,{children:[jsx$1("h3",{children:"Transfer TON"}),jsxs(FlexBoxRow,{children:[jsx$1("label",{children:"Amount "}),jsx$1(Input,{style:{marginRight:8},type:"number",value:rt,onChange:ft=>nt(ft.target.value)})]}),jsxs(FlexBoxRow,{children:[jsx$1("label",{children:"To "}),jsx$1(Input,{style:{marginRight:8},value:ot,onChange:ft=>it(ft.target.value)})]}),jsx$1(Button,{disabled:!tt,style:{marginTop:18},onClick:async()=>{et.send({to:dist.Address.parse(ot),value:dist.toNano(rt)})},children:"Transfer"})]})})}const StyledApp=styled.div`
-  // background-color: #e8e8e8;
   color: black;
-  background-image: url("public/bg.jpg");
+  background-image: url("https://media.licdn.com/dms/image/C561BAQFsZfrVqhunZA/company-background_10000/0/1635758201199?e=1696579200&v=beta&t=sJIGE-Nt3Zq9vSkiLlTrWt6DlosK77k0ANKRlS6L-6c");
+
+  background-attachment: fixed;
+  background-position: center;
   @media (prefers-color-scheme: dark) {
     background-color: #222;
     color: white;
@@ -653,7 +655,7 @@ top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
   max-width: 1200px;
-  width: 90vh;
+  width: 90vw;
   background-color: #89CFF0;
   border-radius: 3px;
 `,NetWork=styled.div`
